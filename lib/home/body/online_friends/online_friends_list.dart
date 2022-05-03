@@ -11,7 +11,7 @@ class OnlineFriendsList extends StatefulWidget {
 }
 
 class _OnlineFriendsListState extends State<OnlineFriendsList> {
-  bool online = false;
+  bool online = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _OnlineFriendsListState extends State<OnlineFriendsList> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
-                online = true;
+                online = false;
                 return const Center(
                   child: SizedBox(
                     height: 1,
