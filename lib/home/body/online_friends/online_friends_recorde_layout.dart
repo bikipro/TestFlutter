@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pay/home/body/chat_page/chat_page_home.dart';
 
 class OnlineFriendsRecordeLayout extends StatefulWidget {
   final List id;
@@ -54,23 +55,30 @@ class _OnlineFriendsRecordeLayoutState
                         return SizedBox(
                           //height: 70,
                           width: 70,
-                          child: Card(
-                              shape: RoundedRectangleBorder(
-                                side: const BorderSide(
-                                    color: Colors.green, width: 1),
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              elevation: 3,
-                              child: users[index]['profile'] != ""
-                                  ? CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          users[index]['profile'].toString()))
-                                  : CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      child: Text(users[index]['name'][0]
-                                          .toString()
-                                          .toUpperCase()),
-                                    )),
+                          child: InkWell(
+                            onTap: () {
+                              ChatPageHome(
+                                uid: users[index].id,
+                              );
+                            },
+                            child: Card(
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(
+                                      color: Colors.green, width: 1),
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                elevation: 3,
+                                child: users[index]['profile'] != ""
+                                    ? CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                            users[index]['profile'].toString()))
+                                    : CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        child: Text(users[index]['name'][0]
+                                            .toString()
+                                            .toUpperCase()),
+                                      )),
+                          ),
                         );
                       }));
             }

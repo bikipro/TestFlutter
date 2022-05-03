@@ -137,16 +137,16 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
       },
     );
 
-    FirebaseMessaging.onMessage.listen(
-      (message) {
-        print("FirebaseMessaging.onMessage.listen");
-        if (message.notification != null) {
-          print(message.notification!.title);
-          print(message.notification!.body);
-          print("message.data11 ${message.data}");
-          LocalNotificationServices.createanddisplaynotification(message);
-        }
-      },
-    );
+    // FirebaseMessaging.onMessage.listen(
+    //   (message) {
+    //     print("FirebaseMessaging.onMessage.listen");
+    //     if (message.notification != null) {
+    //       print(message.notification!.title);
+    //       print(message.notification!.body);
+    //       print("message.data11 ${message.data}");
+    //      // LocalNotificationServices.createanddisplaynotification(message);
+    //     }
+    //   },
+    // );
   }
 }

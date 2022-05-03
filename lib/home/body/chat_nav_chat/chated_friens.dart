@@ -75,7 +75,14 @@ class _ChatedFriend extends State<ChatedFriend> {
                                   ConnectionState.active) {
                                 if (snapshot.data!.docs.first["type"] !=
                                     "img") {
-                                  return Text(snapshot.data!.docs.first["msg"]);
+                                  return snapshot.data!.docs.first["isSeen"]
+                                      ? Text(snapshot.data!.docs.first["msg"])
+                                      : Text(
+                                          snapshot.data!.docs.first["msg"],
+                                          style: const TextStyle(
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold),
+                                        );
                                 } else {
                                   return const Text("image");
                                 }
