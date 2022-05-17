@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -41,8 +42,67 @@ class _ChatRightState extends State<ChatRight> {
                 if (widget.record.type == "img") {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Scaffold(
-                          body: Center(
-                              child: Image.network(widget.record.msg)))));
+                              body: SizedBox(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            child: Stack(
+                              alignment: AlignmentDirectional.bottomCenter,
+                              children: [
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Center(
+                                    child: Image.network(widget.record.msg),
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent.withOpacity(0.2),
+                                  ),
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Row(
+                                    //mainAxisSize: MainAxisSize.min,
+                                    //crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        DateFormat().format(DateTime.parse(
+                                            widget.record.time == null
+                                                ? DateTime.now().toString()
+                                                : widget.record.time
+                                                    .toDate()
+                                                    .toString())),
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 4, top: 0, right: 4),
+                                        child: widget.record.isSeen
+                                            ? const Icon(
+                                                Icons.done_all,
+                                                color: Colors.green,
+                                                size: 20,
+                                              )
+                                            : const Icon(
+                                                Icons.done_all,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ))));
                 } else {
                   setState(() {
                     showDate ? showDate = false : showDate = true;

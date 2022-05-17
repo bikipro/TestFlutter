@@ -28,13 +28,7 @@ class _OnlineFriendsRecordeLayoutState
               .snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (!snapshot.hasData) {
-              return const Center(
-                child: SizedBox(
-                  height: 1,
-                ),
-              );
-            } else {
+            if (snapshot.connectionState == ConnectionState.active) {
               List<DocumentSnapshot> users = snapshot.data!.docs;
 
               return Container(
@@ -82,9 +76,12 @@ class _OnlineFriendsRecordeLayoutState
                         );
                       }));
             }
+            return const Center(
+              child: Text("no friends are online"),
+            );
           });
     } else {
-      return SizedBox(height: 1);
+      return SizedBox();
     }
   }
 }

@@ -54,8 +54,42 @@ class _ChatLeftState extends State<ChatLeft> {
                 if (widget.record.type == "img") {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Scaffold(
-                          body: Center(
-                              child: Image.network(widget.record.msg)))));
+                              body: SizedBox(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            child: Stack(
+                              alignment: AlignmentDirectional.bottomCenter,
+                              children: [
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Center(
+                                    child: Image.network(widget.record.msg),
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent.withOpacity(0.2),
+                                  ),
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Text(
+                                    DateFormat().format(DateTime.parse(
+                                        widget.record.time == null
+                                            ? DateTime.now().toString()
+                                            : widget.record.time
+                                                .toDate()
+                                                .toString())),
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ))));
                 } else {
                   setState(() {
                     showDate ? showDate = false : showDate = true;
