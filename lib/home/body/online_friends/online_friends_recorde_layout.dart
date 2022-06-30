@@ -51,9 +51,12 @@ class _OnlineFriendsRecordeLayoutState
                           width: 70,
                           child: InkWell(
                             onTap: () {
-                              ChatPageHome(
-                                uid: users[index].id,
-                              );
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ChatPageHome(
+                                            uid: users[index].id,
+                                          )));
                             },
                             child: Card(
                                 shape: RoundedRectangleBorder(

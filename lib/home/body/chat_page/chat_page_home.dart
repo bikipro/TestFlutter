@@ -30,6 +30,7 @@ class _ChatPageHomeState extends State<ChatPageHome> {
   String token = "";
   String myName = KeepLogin.prefs.getString("myName").toString();
   FriendModel friendDetails = FriendModel();
+
   @override
   void initState() {
     myId = FirebaseAuth.instance.currentUser!.uid;
@@ -94,6 +95,7 @@ class _ChatPageHomeState extends State<ChatPageHome> {
                 uid: widget.uid,
               ),
               ChatPageHomeFooter(
+                //whatsapp pe call karu //ik min bs
                 msgController: msgController,
                 callback: sendMsgs,
                 callback2: sendMsgs,
